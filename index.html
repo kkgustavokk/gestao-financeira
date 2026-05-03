@@ -1028,6 +1028,170 @@ const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
 
   .login-btn:hover { opacity: 0.85; }
 
+
+  /* ── MOBILE RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 768px) {
+
+    /* Sidebar vira header no topo */
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0; right: 0; bottom: auto;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      flex-direction: row;
+      align-items: center;
+      padding: 0;
+      z-index: 200;
+      overflow: visible;
+    }
+
+    .sidebar-logo {
+      padding: 10px 14px;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .sidebar-logo .logo-title { font-size: 14px; line-height: 1.2; }
+    .sidebar-logo .logo-sub { font-size: 10px; margin-top: 1px; }
+
+    .main-nav {
+      padding: 8px 10px;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+
+    .main-nav-btn { font-size: 10px; padding: 6px 8px; }
+
+    .sidebar-year {
+      padding: 8px 10px;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .sidebar-year label { display: none; }
+    .sidebar-year select { font-size: 11px; padding: 5px 8px; width: 80px; }
+
+    /* Meses viram scroll horizontal */
+    .sidebar-months {
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 8px;
+    }
+
+    .sidebar-months-label { display: none; }
+
+    #monthList {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .month-btn {
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      white-space: nowrap;
+      margin-bottom: 0;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .month-btn .month-total { font-size: 10px; }
+
+    .sidebar-footer { display: none; }
+
+    /* Main content abaixo do header */
+    .main {
+      margin-left: 0;
+      margin-top: 80px;
+      padding: 16px 14px;
+    }
+
+    /* Topbar */
+    .topbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .topbar-left h1 { font-size: 24px; }
+    .topbar-left .topbar-sub { font-size: 12px; }
+
+    #btnAdicionar { width: 100%; text-align: center; }
+
+    /* Cards - 2 colunas */
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .annual-cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .card { padding: 12px 14px; }
+    .card .c-value { font-size: 16px; }
+    .card .c-label { font-size: 10px; }
+
+    /* View tabs */
+    .view-tabs { flex-wrap: wrap; }
+    .view-tab { font-size: 12px; padding: 6px 12px; }
+
+    /* Bottom grid - 1 coluna */
+    .bottom-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    /* Table */
+    .panel-inner { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .annual-panel .panel-inner { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    tbody td { font-size: 12px; padding: 8px 10px; }
+    tbody td:first-child { min-width: 140px; }
+    thead th { font-size: 10px; padding: 8px 10px; }
+
+    .annual-table tbody td { font-size: 11px; padding: 7px 8px; }
+    .annual-table thead th { font-size: 10px; padding: 7px 8px; }
+
+    /* Modal */
+    .login-box { padding: 32px 24px; margin: 0 16px; }
+    #modalOverlay { padding: 20px 16px; align-items: flex-end; }
+    #modalOverlay > div { border-radius: 16px 16px 0 0; max-width: 100%; }
+
+    #bulkModalOverlay { padding: 20px 0 0; align-items: flex-end; }
+    #bulkModalOverlay > div { border-radius: 16px 16px 0 0; max-width: 100%; max-height: 85vh; }
+
+    /* Charts */
+    .chart-panel { padding: 14px 16px; }
+    .bar-label { width: 90px; font-size: 11px; }
+    .bar-val { font-size: 11px; width: 70px; }
+
+    /* Section head */
+    .section-head { margin-bottom: 10px; }
+    .section-head h2 { font-size: 11px; }
+  }
+
+  @media (max-width: 480px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+    .card .c-value { font-size: 14px; }
+    .topbar-left h1 { font-size: 20px; }
+    .main { padding: 12px 10px; }
+    .main-nav-btn { font-size: 9px; padding: 5px 6px; }
+  }
+
 </style>
 </head>
 <body>
@@ -1109,7 +1273,171 @@ const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
       <div style="width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pulse 1s infinite;"></div>
       <span style="font-size:11px;color:var(--amber);">Sincronizando...</span>
     </div>
-    <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}</style>
+    <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  /* ── MOBILE RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 768px) {
+
+    /* Sidebar vira header no topo */
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0; right: 0; bottom: auto;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      flex-direction: row;
+      align-items: center;
+      padding: 0;
+      z-index: 200;
+      overflow: visible;
+    }
+
+    .sidebar-logo {
+      padding: 10px 14px;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .sidebar-logo .logo-title { font-size: 14px; line-height: 1.2; }
+    .sidebar-logo .logo-sub { font-size: 10px; margin-top: 1px; }
+
+    .main-nav {
+      padding: 8px 10px;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+
+    .main-nav-btn { font-size: 10px; padding: 6px 8px; }
+
+    .sidebar-year {
+      padding: 8px 10px;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .sidebar-year label { display: none; }
+    .sidebar-year select { font-size: 11px; padding: 5px 8px; width: 80px; }
+
+    /* Meses viram scroll horizontal */
+    .sidebar-months {
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 8px;
+    }
+
+    .sidebar-months-label { display: none; }
+
+    #monthList {
+      display: flex;
+      flex-direction: row;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .month-btn {
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      white-space: nowrap;
+      margin-bottom: 0;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .month-btn .month-total { font-size: 10px; }
+
+    .sidebar-footer { display: none; }
+
+    /* Main content abaixo do header */
+    .main {
+      margin-left: 0;
+      margin-top: 80px;
+      padding: 16px 14px;
+    }
+
+    /* Topbar */
+    .topbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .topbar-left h1 { font-size: 24px; }
+    .topbar-left .topbar-sub { font-size: 12px; }
+
+    #btnAdicionar { width: 100%; text-align: center; }
+
+    /* Cards - 2 colunas */
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .annual-cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .card { padding: 12px 14px; }
+    .card .c-value { font-size: 16px; }
+    .card .c-label { font-size: 10px; }
+
+    /* View tabs */
+    .view-tabs { flex-wrap: wrap; }
+    .view-tab { font-size: 12px; padding: 6px 12px; }
+
+    /* Bottom grid - 1 coluna */
+    .bottom-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    /* Table */
+    .panel-inner { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .annual-panel .panel-inner { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    tbody td { font-size: 12px; padding: 8px 10px; }
+    tbody td:first-child { min-width: 140px; }
+    thead th { font-size: 10px; padding: 8px 10px; }
+
+    .annual-table tbody td { font-size: 11px; padding: 7px 8px; }
+    .annual-table thead th { font-size: 10px; padding: 7px 8px; }
+
+    /* Modal */
+    .login-box { padding: 32px 24px; margin: 0 16px; }
+    #modalOverlay { padding: 20px 16px; align-items: flex-end; }
+    #modalOverlay > div { border-radius: 16px 16px 0 0; max-width: 100%; }
+
+    #bulkModalOverlay { padding: 20px 0 0; align-items: flex-end; }
+    #bulkModalOverlay > div { border-radius: 16px 16px 0 0; max-width: 100%; max-height: 85vh; }
+
+    /* Charts */
+    .chart-panel { padding: 14px 16px; }
+    .bar-label { width: 90px; font-size: 11px; }
+    .bar-val { font-size: 11px; width: 70px; }
+
+    /* Section head */
+    .section-head { margin-bottom: 10px; }
+    .section-head h2 { font-size: 11px; }
+  }
+
+  @media (max-width: 480px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+    .card .c-value { font-size: 14px; }
+    .topbar-left h1 { font-size: 20px; }
+    .main { padding: 12px 10px; }
+    .main-nav-btn { font-size: 9px; padding: 5px 6px; }
+  }
+
+</style>
     Clique nos valores para editar
   </div>
 </aside>
@@ -1269,6 +1597,7 @@ const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
       
       <button class="view-tab" id="dTabAnual" onclick="switchDespesasView('anual')">Anual</button>
       <button class="view-tab" id="dTabGraficos" onclick="switchDespesasView('graficos')">Gráficos</button>
+      <button class="view-tab" id="dTabFixas" onclick="switchDespesasView('fixas')" style="color:var(--amber);">Fixas</button>
     </div>
 
     <!-- DISCRIMINADAS -->
@@ -1357,8 +1686,25 @@ const supa = supabase.createClient(SUPA_URL, SUPA_KEY);
         </div>
       </div>
     </div>
-  </div>
-  <!-- ===== SEÇÃO RESUMO ===== -->
+
+    <!-- FIXAS -->
+    <div id="dViewFixas" style="display:none;">
+      <div class="cards" id="fixasCards" style="margin-bottom:20px;"></div>
+      <div class="section-head" style="margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;">
+        <h2>Contas a pagar — <span id="fixasYear"></span></h2>
+        <button onclick="addFixaRow()" style="font-size:12px;padding:6px 14px;border-radius:8px;border:1px solid var(--amber);background:rgba(239,159,39,0.1);color:var(--amber);cursor:pointer;font-family:var(--font-body);">+ Nova conta</button>
+      </div>
+      <div class="annual-panel">
+        <div class="panel-inner">
+          <table class="annual-table" style="min-width:1200px;">
+            <thead id="fixasHead"></thead>
+            <tbody id="fixasBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /sectionDespesas -->
   <div id="sectionResumo">
     <div class="view-tabs" style="margin-bottom:24px;">
       <button class="view-tab active" id="rTabAnual" onclick="switchResumoView('anual')">Anual</button>
@@ -1998,7 +2344,7 @@ function renderResumoGraficos() {
 let currentDespesasView = 'discriminadas';
 
 function switchDespesasView(view) {
-  ['discriminadas','mensal','anual','graficos'].forEach(v => {
+  ['discriminadas','anual','graficos','fixas'].forEach(v => {
     const tab = document.getElementById('dTab' + v.charAt(0).toUpperCase() + v.slice(1));
     const panel = document.getElementById('dView' + v.charAt(0).toUpperCase() + v.slice(1));
     if (tab) tab.classList.toggle('active', v === view);
@@ -2009,6 +2355,7 @@ function switchDespesasView(view) {
   if (view === 'discriminadas') renderDespesas();
   if (view === 'anual') renderDespesasAnual();
   if (view === 'graficos') renderDespesasGraficos();
+  if (view === 'fixas') renderFixas();
 }
 
 function renderDespesasAnual() {
@@ -3375,7 +3722,275 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && e.ctrlKey) saveComment();
 });
 
-// ── SUPABASE SYNC ─────────────────────────────────────────────────────
+// ── CONTAS FIXAS ──────────────────────────────────────────────────────
+const fixasData = {
+  2026: [
+    { id:1,  name:'Cartão Nubank Gustavo', quando:'Mensal',  dia:1,  months:[26064.87,26225.92,19202.53,27409.01,0,0,0,0,0,0,0,0] },
+    { id:2,  name:'Celg',                  quando:'Mensal',  dia:3,  months:[1060.36,738.10,742.05,839.02,0,0,0,0,0,0,0,0] },
+    { id:3,  name:'Gilmar',                quando:'Mensal',  dia:5,  months:[600.00,600.00,600.00,600.00,0,0,0,0,0,0,0,0] },
+    { id:4,  name:'Escola Videira',        quando:'Mensal',  dia:5,  months:[0,1076.13,0,0,0,0,0,0,0,0,0,0] },
+    { id:5,  name:'Intuitive Table',       quando:'Mensal',  dia:5,  months:[67.53,67.53,68.29,68.29,0,0,0,0,0,0,0,0] },
+    { id:6,  name:'Celulares',             quando:'Mensal',  dia:6,  months:[175.00,144.66,270.00,270.00,0,0,0,0,0,0,0,0] },
+    { id:7,  name:'Internet Vivo',         quando:'Mensal',  dia:6,  months:[211.00,225.24,0,0,0,0,0,0,0,0,0,0] },
+    { id:8,  name:'Condomínio',            quando:'Mensal',  dia:10, months:[678.88,656.52,692.27,671.93,0,0,0,0,0,0,0,0] },
+    { id:9,  name:'Clube IFood',           quando:'Mensal',  dia:11, months:[12.90,12.90,12.90,12.90,0,0,0,0,0,0,0,0] },
+    { id:10, name:'Unimed',                quando:'Mensal',  dia:11, months:[1442.01,1543.65,1738.32,1651.80,0,0,0,0,0,0,0,0] },
+    { id:11, name:'ChatGpt',               quando:'Mensal',  dia:12, months:[114.39,114.39,111.06,107.61,0,0,0,0,0,0,0,0] },
+    { id:12, name:'Cartão Nubank Marília', quando:'Mensal',  dia:14, months:[1484.39,1114.28,819.25,0,0,0,0,0,0,0,0,0] },
+    { id:13, name:'Internet Sim',          quando:'Mensal',  dia:14, months:[132.77,133.03,133.07,0,0,0,0,0,0,0,0,0] },
+    { id:14, name:'GranaZen',              quando:'Mensal',  dia:20, months:[19.90,19.90,19.90,0,0,0,0,0,0,0,0,0] },
+    { id:15, name:'Seguro do Veículo',     quando:'Anual',   dia:0, mes:0,  months:[2674.30,0,0,0,0,0,0,0,0,0,0,0] },
+    { id:16, name:'GTOw com Renato',       quando:'Anual',   dia:0, mes:null, months:[0,0,0,0,0,0,0,0,0,0,0,0] },
+    { id:17, name:'IPTU',                  quando:'Anual',   dia:0, mes:1,  months:[0,735.12,0,0,0,0,0,0,0,0,0,0] },
+    { id:18, name:'Spotfy',                quando:'Anual',   dia:0, mes:2,  months:[0,31.90,379.00,0,0,0,0,0,0,0,0,0] },
+    { id:19, name:'Google Drive - 2TB',    quando:'Anual',   dia:0, mes:4,  months:[0,0,0,0,0,0,0,0,0,0,0,0] },
+    { id:20, name:'Lobbyze',               quando:'Anual',   dia:0, mes:3,  months:[0,0,0,0,0,0,0,0,0,0,0,0] },
+    { id:21, name:'Power Equilab',         quando:'Anual',   dia:0, mes:3,  months:[0,0,0,0,0,0,0,0,0,0,0,0] },
+    { id:22, name:'HRC',                   quando:'Anual',   dia:0, mes:7,  months:[0,534.12,0,0,0,0,0,0,0,0,0,0] },
+    { id:23, name:'HostGator (site KK) - Turbo', quando:'Anual', dia:0, mes:8, months:[0,0,0,0,0,0,0,0,0,0,0,0] },
+    { id:24, name:'Hand2note',             quando:'Anual',   dia:0, mes:8,  months:[0,0,0,0,0,0,0,0,0,0,0,0] },
+    { id:25, name:'IPVA',                  quando:'Anual',   dia:0, mes:9,  months:[0,0,0,0,0,0,0,0,0,0,0,0] },
+  ],
+  2025: []
+};
+
+let fixasNextId = { 2026: 26, 2025: 1 };
+
+function getFixasYear() { return fixasData[currentYear] || fixasData[2026]; }
+
+function renderFixas() {
+  const rows = getFixasYear();
+  document.getElementById('fixasYear').textContent = currentYear;
+
+  // Cards
+  const mthTotals = MONTHS.map((_,i) => rows.reduce((s,r) => s+r.months[i], 0));
+  const grandTotal = mthTotals.reduce((a,b)=>a+b,0);
+  const avg = mthTotals.filter(v=>v>0).length ? mthTotals.filter(v=>v>0).reduce((a,b)=>a+b,0)/mthTotals.filter(v=>v>0).length : 0;
+  const mensais = rows.filter(r=>r.quando==='Mensal').length;
+  const anuais = rows.filter(r=>r.quando==='Anual').length;
+
+  document.getElementById('fixasCards').innerHTML = `
+    <div class="card" style="--card-accent:#F08080;">
+      <div class="c-label">Total ${currentYear}</div>
+      <div class="c-value" style="color:#F08080;">${fmt(grandTotal)}</div>
+      <div class="c-sub">${rows.length} contas registradas</div>
+    </div>
+    <div class="card amber">
+      <div class="c-label">Média mensal</div>
+      <div class="c-value">${fmt(avg)}</div>
+      <div class="c-sub">meses com dados</div>
+    </div>
+    <div class="card blue">
+      <div class="c-label">Contas mensais</div>
+      <div class="c-value">${mensais}</div>
+      <div class="c-sub">${anuais} anuais</div>
+    </div>
+    <div class="card green">
+      <div class="c-label">Mês atual (${MONTHS[currentMonth]})</div>
+      <div class="c-value" style="color:#F08080;">${fmt(mthTotals[currentMonth])}</div>
+      <div class="c-sub">${rows.filter(r=>r.months[currentMonth]>0).length} contas no mês</div>
+    </div>
+  `;
+
+  // Header
+  const monthCols = MONTHS.map((m,i) => `
+    <th style="text-align:right;min-width:90px;border-left:1px solid var(--border);${i===currentMonth?'color:var(--accent);background:rgba(29,158,117,0.06);':''}">${m}</th>
+  `).join('');
+
+  document.getElementById('fixasHead').innerHTML = `
+    <tr>
+      <th style="min-width:180px;">Conta</th>
+      <th style="min-width:80px;">Quando</th>
+      <th style="min-width:70px;text-align:center;">Venc.</th>
+      ${monthCols}
+      <th style="border-left:1px solid var(--border2);min-width:100px;text-align:right;">Total</th>
+      <th style="width:32px;"></th>
+    </tr>
+  `;
+
+  // Body
+  const tbody = document.getElementById('fixasBody');
+  tbody.innerHTML = '';
+
+  rows.forEach((row, idx) => {
+    const color = COLORS[idx % COLORS.length];
+    const total = row.months.reduce((a,b)=>a+b,0);
+    const isAnual = row.quando === 'Anual';
+
+    const cells = MONTHS.map((_, mi) => {
+      const val = row.months[mi];
+      const hl = mi === currentMonth ? 'background:rgba(29,158,117,0.06);' : '';
+      const display = val > 0
+        ? `<span style="color:#F08080;font-family:var(--font-mono);font-size:12px;cursor:pointer;" onclick="openFixaModal(${row.id},${mi})" title="Clique para editar">${fmt(val)}</span>`
+        : `<span style="color:var(--text3);font-size:12px;cursor:pointer;" onclick="openFixaModal(${row.id},${mi})" title="Adicionar">—</span>`;
+      return `<td style="text-align:right;border-left:1px solid var(--border);padding:8px 10px;${hl}">${display}</td>`;
+    }).join('');
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="padding:8px 12px;">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:8px;"></span>
+        ${row.name}
+      </td>
+      <td style="padding:8px 10px;">
+        <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:${isAnual?'rgba(239,159,39,0.15)':'rgba(29,158,117,0.12)'};color:${isAnual?'var(--amber)':'var(--accent2)'};">${row.quando}</span>
+      </td>
+      <td style="text-align:center;font-size:12px;padding:8px 10px;">
+        ${row.quando === 'Mensal'
+          ? `<span style="color:var(--text3);">${row.dia > 0 ? 'Dia '+row.dia : '—'}</span>`
+          : `<select onchange="setFixaMes(${row.id}, parseInt(this.value))"
+               style="background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:11px;padding:3px 6px;border-radius:6px;cursor:pointer;outline:none;">
+               <option value="-1" ${row.mes===null||row.mes===undefined?'selected':''}>—</option>
+               ${MONTHS.map((m,i)=>`<option value="${i}" ${row.mes===i?'selected':''}>${m}</option>`).join('')}
+             </select>`
+        }
+      </td>
+      ${cells}
+      <td style="border-left:1px solid var(--border2);text-align:right;font-family:var(--font-mono);font-size:12px;font-weight:500;color:#F08080;padding:8px 10px;">${total > 0 ? fmt(total) : '—'}</td>
+      <td style="padding:4px 8px;"><button class="del-btn" onclick="deleteFixa(${row.id})">×</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // Total row
+  const totTr = document.createElement('tr');
+  totTr.className = 'total-row';
+  const totCells = MONTHS.map((_,mi) => {
+    const t = mthTotals[mi];
+    const hl = mi === currentMonth ? 'background:rgba(29,158,117,0.1);' : '';
+    return `<td style="text-align:right;border-left:1px solid var(--border);padding:8px 10px;color:#F08080;${hl}">${t > 0 ? fmt(t) : '—'}</td>`;
+  }).join('');
+  totTr.innerHTML = `
+    <td style="padding:8px 12px;">TOTAL</td>
+    <td colspan="2"></td>
+    ${totCells}
+    <td style="border-left:1px solid var(--border2);text-align:right;font-family:var(--font-mono);font-size:13px;color:#F08080;padding:8px 10px;">${fmt(grandTotal)}</td>
+    <td></td>
+  `;
+  tbody.appendChild(totTr);
+}
+
+// Modal for editing fixa values
+let fixaModalCtx = null;
+
+function openFixaModal(rowId, month) {
+  const rows = getFixasYear();
+  const row = rows.find(r => r.id === rowId);
+  if (!row) return;
+  fixaModalCtx = { rowId, month };
+
+  document.getElementById('modalTitle').textContent = `Fixa — ${row.name}`;
+  document.getElementById('modalSub').textContent = `${MONTHS_FULL[month]} ${currentYear}`;
+  document.getElementById('modalConfirm').style.background = 'var(--amber)';
+
+  const existing = row.months[month];
+  const inp = document.getElementById('modalValue');
+  inp.value = existing > 0 ? existing.toLocaleString('pt-BR', {minimumFractionDigits:2,maximumFractionDigits:2}) : '';
+
+  document.getElementById('modalOverlay').style.display = 'flex';
+  setTimeout(() => { inp.focus(); inp.select(); }, 80);
+
+  // Override confirmModal for this context
+  document.getElementById('modalConfirm').onclick = confirmFixaModal;
+}
+
+function confirmFixaModal() {
+  const raw = document.getElementById('modalValue').value
+    .replace(/R\$\s*/g,'').replace(/\./g,'').replace(',','.');
+  const val = parseFloat(raw) || 0;
+  const { rowId, month } = fixaModalCtx;
+
+  const rows = getFixasYear();
+  const row = rows.find(r => r.id === rowId);
+  if (row) {
+    row.months[month] = val;
+    // Save to Supabase
+    supa.from('contas_fixas').upsert({
+      year: currentYear, row_id: rowId, month, value: val,
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'year,row_id,month' }).then(({error}) => {
+      if (error) showSyncError(error.message); else showSyncOk();
+    });
+  }
+
+  document.getElementById('modalOverlay').style.display = 'none';
+  document.getElementById('modalConfirm').onclick = confirmModal; // restore
+  fixaModalCtx = null;
+  renderFixas();
+}
+
+function addFixaRow() {
+  const name = prompt('Nome da conta:');
+  if (!name || !name.trim()) return;
+  const quando = confirm('É mensal? (Cancelar = Anual)') ? 'Mensal' : 'Anual';
+  const dia = quando === 'Mensal' ? (parseInt(prompt('Dia do vencimento:')) || 0) : 0;
+  const yr = currentYear;
+  const id = fixasNextId[yr] || 1;
+  fixasNextId[yr] = id + 1;
+
+  if (!fixasData[yr]) fixasData[yr] = [];
+  fixasData[yr].push({ id, name: name.trim(), quando, dia, months: Array(12).fill(0) });
+
+  // Save category to Supabase
+  supa.from('contas_fixas_categorias').upsert({
+    year: yr, row_id: id, name: name.trim(), quando, dia
+  }, { onConflict: 'year,row_id' }).then(({error}) => {
+    if (error) showSyncError(error.message); else showSyncOk();
+  });
+
+  renderFixas();
+}
+
+function setFixaMes(rowId, mes) {
+  const row = getFixasYear().find(r => r.id === rowId);
+  if (!row) return;
+  row.mes = mes >= 0 ? mes : null;
+  // Save to Supabase
+  supa.from('contas_fixas_categorias').upsert({
+    year: currentYear, row_id: rowId, name: row.name, quando: row.quando, dia: row.dia, mes: row.mes
+  }, { onConflict: 'year,row_id' }).then(({error}) => {
+    if (error) showSyncError(error.message); else showSyncOk();
+  });
+}
+
+function deleteFixa(rowId) {
+  if (!confirm('Remover esta conta fixa?')) return;
+  const yr = currentYear;
+  fixasData[yr] = fixasData[yr].filter(r => r.id !== rowId);
+  supa.from('contas_fixas_categorias').delete().eq('year', yr).eq('row_id', rowId);
+  supa.from('contas_fixas').delete().eq('year', yr).eq('row_id', rowId);
+  renderFixas();
+}
+
+async function loadFixasFromSupabase() {
+  try {
+    // Load categories
+    const { data: cats } = await supa.from('contas_fixas_categorias').select('*');
+    if (cats && cats.length > 0) {
+      cats.forEach(row => {
+        if (!fixasData[row.year]) fixasData[row.year] = [];
+        const exists = fixasData[row.year].find(r => r.id === row.row_id);
+        if (!exists) {
+          fixasData[row.year].push({ id: row.row_id, name: row.name, quando: row.quando, dia: row.dia || 0, months: Array(12).fill(0) });
+          if (!fixasNextId[row.year] || row.row_id >= fixasNextId[row.year]) fixasNextId[row.year] = row.row_id + 1;
+        }
+      });
+    }
+
+    // Load values
+    const { data: vals } = await supa.from('contas_fixas').select('*');
+    if (vals && vals.length > 0) {
+      vals.forEach(row => {
+        const yr = fixasData[row.year];
+        if (!yr) return;
+        const r = yr.find(r => r.id === row.row_id);
+        if (r) r.months[row.month] = parseFloat(row.value);
+      });
+    }
+  } catch(e) {
+    console.warn('Erro ao carregar contas fixas:', e);
+  }
+}
 
 async function saveReceita(year, catId, catName, month, value) {
   const { error } = await supa.from('receitas').upsert({
@@ -3492,6 +4107,7 @@ async function loadFromSupabase() {
     }
 
     console.log('✅ Dados carregados do Supabase');
+    await loadFixasFromSupabase();
   } catch(e) {
     console.warn('⚠️ Erro ao carregar do Supabase:', e);
   }
