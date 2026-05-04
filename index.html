@@ -3684,12 +3684,41 @@ function openComment(e, key, label, onSave) {
 function saveComment() {
   if (!activeCommentKey) return;
   const val = document.getElementById('commentTextarea').value.trim();
-  if (val) comments[activeCommentKey] = val; else delete comments[activeCommentKey];
+  const key = activeCommentKey;
+
+  if (val) {
+    comments[key] = val;
+    // Save to Supabase
+    supa.from('comentarios').upsert({
+      chave: key,
+      texto: val,
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'chave' }).then(({error}) => {
+      if (error) showSyncError(error.message); else showSyncOk();
+    });
+  } else {
+    delete comments[key];
+    // Delete from Supabase
+    supa.from('comentarios').delete().eq('chave', key);
+  }
+
   document.getElementById('commentPopup').classList.remove('visible');
   const cb = activeCommentCallback;
   activeCommentKey = null;
   activeCommentCallback = null;
   if (cb) cb(); else renderAnnual();
+}
+
+async function loadComments() {
+  try {
+    const { data } = await supa.from('comentarios').select('*');
+    if (data && data.length > 0) {
+      data.forEach(row => { comments[row.chave] = row.texto; });
+      console.log(`✅ ${data.length} comentários carregados`);
+    }
+  } catch(e) {
+    console.warn('Erro ao carregar comentários:', e);
+  }
 }
 
 // Helper: open comment for a receita cell
@@ -4108,6 +4137,7 @@ async function loadFromSupabase() {
 
     console.log('✅ Dados carregados do Supabase');
     await loadFixasFromSupabase();
+    await loadComments();
   } catch(e) {
     console.warn('⚠️ Erro ao carregar do Supabase:', e);
   }
